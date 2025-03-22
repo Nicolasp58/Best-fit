@@ -8,7 +8,7 @@ def best_fit(memoria, requerimiento, index):
     mejor_base = -1
     mejor_limite = float('inf')
 
-    # Búsqueda en la memoria
+    # Búsqueda en la memoria 
     for i in range(n):
         actual_index = (index + i) % n
         base, limite = memoria[actual_index]
@@ -25,13 +25,12 @@ def best_fit(memoria, requerimiento, index):
 
     # Si el espacio es igual al requerimiento
     if mejor_limite == requerimiento:
-        nueva_base = mejor_base + requerimiento
-        nuevo_limite = 0
-        nueva_memoria.pop(mejor_index) 
+        nueva_memoria.pop(mejor_index)
+        nuevo_indice = 0 if mejor_index == len(memoria) - 1 else mejor_index
     else:
         nueva_base = mejor_base + requerimiento
         nuevo_limite = mejor_limite - requerimiento
         nueva_memoria[mejor_index] = (nueva_base, nuevo_limite)
+        nuevo_indice = mejor_index 
 
-    return nueva_memoria, nueva_base, nuevo_limite, mejor_index
-
+    return nueva_memoria, mejor_base, mejor_limite, nuevo_indice
